@@ -32,6 +32,7 @@ The installation process consists of the following steps:
 6. Create Partition for archinstall command:
     - `mount --mkdir /dev/nvm0n1p2 /mnt/archinstall`
     - `mount --mkdir /dev/nvm0n1p1 /mnt/archinstall/boot`
+    - `pacman -Sy archlinux-keyring`
 7. Run `archinstall` command normally you have this: ![](images/image4.png)
 
 8. In first change DiskConfiguration to this: ![](images/image5.png) ![](images/image6.png) ![](images/image7.png)
