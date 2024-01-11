@@ -41,11 +41,23 @@ The installation process consists of the following steps:
     - Check the bootloader is set on `systemd-boot`
     - Set root Password
     - Create a new user
+    - Add Network solution, Use `NetworkManager` for Desktop Environment
     - You can set Profile for instaling Desktop Environment
     - Don't touch Audio Option, it can crash your system
     - Add Additional Packages !
     
     ![](images/image8.png)
-9. Finalizing the installation
+9. After the script is finished, enter yes for chrooting into the new system
 
-For detailed instructions on each step, please refer to the corresponding sections in this guide.
+10. After chrooting, run the following commands we need to reinstall the grub:
+    - `bootctl remove` (remove the old grub)
+    - `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch` (install the new grub)
+    - `grub-mkconfig -o /boot/grub/grub.cfg` (generate the grub config file)
+    - `nano /etc/default/grub` (edit the grub config file)
+    - `GRUB_DISABLE_OS_PROBER=false` (add this line to the grub config file)
+    - Do exit command and reboot your system
+    - After rebooting, you should see the grub menu, select Arch Linux and press enter
+    - After booting into the system, login with your username and password
+    - Run `sudo mount --mkdir /dev/nvme0n1p1 /mnt/win` (mount the windows partition, check with `lsblk` if you are not sure what partition is)
+    - Run `grub-mkconfig -o /boot/grub/grub.cfg` (generate the grub config file)
+    - It's done ! normaly you have now windows and archlinux on your grub menu !
